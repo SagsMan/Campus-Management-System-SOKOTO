@@ -5,9 +5,9 @@ import Footer from "../../../components/footer/Footer";
 import { apiService } from "@/app/services/api";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -50,8 +50,8 @@ export default function LoginPage() {
         <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between">
             <Link href="/" className="brand-wordmark">
-              <span className="brand-wordmark-mark">u</span>
-              <span className="brand-wordmark-name">uniq</span>
+              <span className="brand-wordmark-mark">D</span>
+              <span className="brand-wordmark-name">DQS Sokoto</span>
             </Link>
 
             <div className="hidden items-center gap-3 text-sm font-medium md:flex">
@@ -76,7 +76,7 @@ export default function LoginPage() {
         >
           <span className="brand-badge mb-5">welcome back</span>
           <h1 className="mb-2 text-center text-3xl font-semibold text-slate-900">
-            Login to uniq
+              Login to Digital Queue System Sokoto
           </h1>
           <p className="mb-6 text-center text-sm text-slate-600">
             Continue with your live queue workspace.
@@ -125,5 +125,19 @@ export default function LoginPage() {
 
       <Footer />
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="brand-shell flex min-h-screen items-center justify-center text-slate-600">
+          Loading login…
+        </main>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   );
 }

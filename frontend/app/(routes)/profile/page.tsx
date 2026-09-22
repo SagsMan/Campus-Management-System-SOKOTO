@@ -33,6 +33,8 @@ type QueueDataResponse = {
   };
 };
 
+type ProfileRole = "USER" | "OPERATOR" | "ADMIN";
+
 export default function ProfilePage() {
   const { user, role, isLoading, isAuthenticated, logout } = useAuth();
   const [activeToken, setActiveToken] = useState<string | undefined>();
@@ -42,7 +44,12 @@ export default function ProfilePage() {
   const [assignedQueues, setAssignedQueues] = useState<string[]>([]);
   const [activeQueue, setActiveQueue] = useState<string | undefined>();
   const [totalQueuesManaged, setTotalQueuesManaged] = useState(0);
-  const profileRole = (role || user?.role || "user").toUpperCase();
+  const profileRole: ProfileRole =
+    role === "operator" || user?.role === "operator"
+      ? "OPERATOR"
+      : role === "admin" || user?.role === "admin"
+        ? "ADMIN"
+        : "USER";
 
   useEffect(() => {
     if (!isAuthenticated || !user) {

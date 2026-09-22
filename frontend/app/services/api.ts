@@ -24,7 +24,9 @@ class ApiService {
   private getAuthHeaders(): HeadersInit {
     if (typeof window === "undefined") return {};
 
-    const token = localStorage.getItem("campusor_jwt");
+    const token =
+      localStorage.getItem("dqs_sokoto_jwt") ||
+      localStorage.getItem("campusor_jwt");
     const headers: HeadersInit = {
       "Content-Type": "application/json",
     };

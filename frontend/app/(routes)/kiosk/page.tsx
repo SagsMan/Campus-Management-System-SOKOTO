@@ -13,7 +13,7 @@ export default function KioskPage({ searchParams }: PageProps) {
       <main className="min-h-screen w-full bg-slate-50 flex items-center justify-center p-6">
         <div className="max-w-lg text-center space-y-4">
           <h1 className="text-2xl font-semibold text-slate-900">
-            Select a queue to view the kiosk display
+             Select a campus office queue to view its public display
           </h1>
          
           <div className="flex justify-center gap-3">
@@ -21,7 +21,7 @@ export default function KioskPage({ searchParams }: PageProps) {
               href="/queue"
               className="rounded-full bg-slate-900 px-4 py-2 text-white text-sm font-semibold hover:bg-slate-800 transition"
             >
-              View Queues
+               View Campus Queues
             </Link>
           </div>
         </div>

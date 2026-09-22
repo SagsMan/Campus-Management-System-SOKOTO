@@ -1,12 +1,14 @@
-# System Architecture – CampusOR
+# System Architecture – Digital Queue System Sokoto
 
 Greetings everyone!!  
 
-This document describes the **official folder structure and architectural organization** of the CampusOR project.  
-All contributors are expected to **strictly follow this structure and naming convention** to ensure consistency, scalability, and maintainability across the codebase.
+This document describes the official folder structure and architectural
+organization of Digital Queue System Sokoto. The application is intentionally
+limited to campus service queues, operator controls, public displays,
+authentication, notifications, and reporting.
 
 ```txt
-CampusOR/
+digital-queue-system-sokoto/
 │
 ├── README.md
 ├── .gitignore
@@ -98,7 +100,7 @@ CampusOR/
 │       │   │
 │       │   └── notifications/
 │       │       ├── email.service.ts
-│       │       └── whatsapp.service.ts
+│       │       └── notification.service.ts
 │       │
 │       ├── server/
 │       │   └── socket.ts        # Socket.IO handlers
@@ -106,14 +108,6 @@ CampusOR/
 │       └── utils/
 │           ├── jwt.ts
 │           └── logger.ts
-│
-├── ml-service/                 # FastAPI ML service
-│   ├── requirements.txt
-│   └── app/
-│       ├── main.py
-│       ├── schemas.py
-│       └── services/
-│           └── predictor.py
 │
 ├── shared/                     # Shared contracts
 │   ├── types/
@@ -125,12 +119,9 @@ CampusOR/
 │
 ├── infra/                      # Infrastructure & deployment
 │   ├── docker-compose.yml
-│   ├── docker/
-│   │   ├── backend.Dockerfile
-│   │   ├── frontend.Dockerfile
-│   │   └── ml.Dockerfile
-│   └── scripts/
-│       └── seed.ts
+│   └── docker/
+│       ├── backend.Dockerfile
+│       └── frontend.Dockerfile
 │
 └── docs/                       # Documentation
     ├── architecture.md

@@ -14,6 +14,7 @@ export type AuthUser = {
   role: UserRole;
   emailVerified: boolean;
   collegeEmail?: string;
+  studentId?: string;
   department?: string;
   position?: string;
   createdAt?: string;
@@ -35,8 +36,10 @@ type AuthContextType = {
   isUser: boolean;
 };
 
-const TOKEN_KEY = "campusor_jwt";
-const USER_KEY = "campusor_user";
+const TOKEN_KEY = "dqs_sokoto_jwt";
+const USER_KEY = "dqs_sokoto_user";
+const LEGACY_TOKEN_KEY = "campusor_jwt";
+const LEGACY_USER_KEY = "campusor_user";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -70,6 +73,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = React.useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(LEGACY_TOKEN_KEY);
+    localStorage.removeItem(LEGACY_USER_KEY);
     setToken(null);
     setUser(null);
     toastBus.info("Logged out successfully");
@@ -80,8 +85,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     apiService.setUnauthorizedCallback(logout);
 
     const timer = setTimeout(() => {
-      const storedToken = localStorage.getItem(TOKEN_KEY);
-      const storedUser = localStorage.getItem(USER_KEY);
+      const storedToken =
+        localStorage.getItem(TOKEN_KEY) ||
+        localStorage.getItem(LEGACY_TOKEN_KEY);
+      const storedUser =
+        localStorage.getItem(USER_KEY) ||
+        localStorage.getItem(LEGACY_USER_KEY);
 
       if (storedToken) {
         if (!isTokenValid(storedToken)) {
@@ -89,6 +98,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           toastBus.error("Session expired. Please login again.");
           localStorage.removeItem(TOKEN_KEY);
           localStorage.removeItem(USER_KEY);
+          localStorage.removeItem(LEGACY_TOKEN_KEY);
+          localStorage.removeItem(LEGACY_USER_KEY);
           setIsLoading(false);
           return;
         }

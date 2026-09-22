@@ -132,7 +132,7 @@ export default function BrowseQueuesPage() {
             <div>
               <h1 className="text-2xl font-bold text-white">Browse Queues</h1>
               <p className="text-sm text-white/80">
-                Find the right queue and join with live availability.
+                 Find Registry, Bursary, Faculty, Departmental Office, or Student Affairs queues with live availability.
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function BrowseQueuesPage() {
           <div>
             <h1 className="text-2xl font-bold text-white">Browse Queues</h1>
             <p className="text-sm text-white/80">
-              Find the right queue and join with live availability.
+               Find Registry, Bursary, Faculty, Departmental Office, or Student Affairs queues with live availability.
             </p>
           </div>
         </div>
@@ -179,7 +179,7 @@ export default function BrowseQueuesPage() {
             </p>
         <input
           type="text"
-          placeholder="Search queues by name or location..."
+           placeholder="Search campus offices by name or location..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full border-0 bg-transparent p-0 text-[17px] font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-0"
@@ -202,7 +202,9 @@ export default function BrowseQueuesPage() {
         <div className="brand-section-card p-12 text-center">
           <Activity className="mx-auto mb-4 h-12 w-12 text-gray-400" />
           <p className="text-gray-600">
-            {searchTerm ? "No queues match your search" : "No queues available right now"}
+             {searchTerm
+               ? "No campus queues match your search"
+               : "No campus queues are available right now"}
           </p>
         </div>
       ) : (

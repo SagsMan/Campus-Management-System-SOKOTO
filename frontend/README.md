@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Queue System Sokoto frontend
+
+This is the Next.js frontend for Digital Queue System Sokoto, the student and
+visitor queue service for Sokoto campus offices.
 
 ## Getting Started
 

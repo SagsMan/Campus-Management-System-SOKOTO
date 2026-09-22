@@ -75,8 +75,8 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between relative z-30">
             <Link href="/" className="brand-wordmark group">
-              <span className="brand-wordmark-mark">u</span>
-              <span className="brand-wordmark-name">uniq</span>
+              <span className="brand-wordmark-mark">D</span>
+              <span className="brand-wordmark-name">DQS Sokoto</span>
             </Link>
 
             <div className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
@@ -285,9 +285,9 @@ export default function Home() {
               className="max-w-xl text-base text-slate-600 md:text-lg animate-in fade-in slide-in-from-left duration-700"
               style={{ animationDelay: "0.2s" }}
             >
-              uniq replaces physical lines with a live, mobile-first queue
-              experience. Keep students moving, reduce crowding, and make every
-              service interaction smoother.
+              Digital Queue System Sokoto replaces physical lines with a live,
+              mobile-first queue experience. Keep students and visitors moving,
+              reduce crowding, and make every service interaction smoother.
             </p>
             <div
               className="flex flex-wrap gap-4 animate-in fade-in slide-in-from-left duration-700"
@@ -303,7 +303,7 @@ export default function Home() {
                 href={secondaryCta}
                 className="brand-secondary-button rounded-full px-6 py-3 text-sm"
               >
-                {isAuthenticated ? "Open Workspace" : "Join uniq"}
+                {isAuthenticated ? "Open Workspace" : "Join DQS Sokoto"}
               </Link>
             </div>
             <div
@@ -336,10 +336,10 @@ export default function Home() {
           >
             <div className="rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-lg transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]">
               <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-                <span className="brand-wordmark-mark">u</span>
+                <span className="brand-wordmark-mark">D</span>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">
-                    uniq Live Queue
+                     <p className="text-sm font-semibold text-slate-900">
+                     Sokoto Live Queue
                   </p>
                   <p className="text-xs text-slate-500">
                     Powered by smart campus operations
@@ -353,16 +353,16 @@ export default function Home() {
                     wait: "12 min",
                     status: "Queue moving smoothly",
                   },
-                  {
-                    title: "Health Center",
-                    wait: "8 min",
-                    status: "Next call in 2 min",
-                  },
-                  {
-                    title: "Cafeteria Pickup",
-                    wait: "4 min",
-                    status: "Ready for pickup",
-                  },
+                   {
+                     title: "Registry",
+                     wait: "8 min",
+                     status: "Next call in 2 min",
+                   },
+                   {
+                     title: "Student Affairs",
+                     wait: "4 min",
+                     status: "Ready for the next visitor",
+                   },
                 ].map((queue, index) => (
                   <div
                     key={queue.title}
@@ -447,7 +447,7 @@ export default function Home() {
                 A live, virtual queue built for campuses.
               </h3>
               <p className="mt-4 text-base text-slate-600">
-                uniq replaces physical lines with real-time visibility,
+                 Digital Queue System Sokoto replaces physical lines with real-time visibility,
                 notifications, and operator controls — all in one system.
               </p>
             </div>
@@ -536,7 +536,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-20">
           <div className="text-center mb-14">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
-              How uniq Works
+               How Digital Queue System Sokoto Works
             </p>
             <h2 className="mt-3 text-3xl font-semibold text-slate-900">
               A simple flow from join to serve.
@@ -613,7 +613,7 @@ export default function Home() {
               Ready to modernize your queue experience?
             </h2>
             <p className="mt-3 text-base text-slate-600">
-              Launch uniq across services and make every visit faster and
+               Launch Digital Queue System Sokoto across services and make every visit faster and
               calmer.
             </p>
           </div>

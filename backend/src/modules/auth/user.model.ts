@@ -13,6 +13,7 @@ export interface IUser extends Document {
 
   // Role-specific fields
   collegeEmail?: string; // Required for "user" role
+  studentId?: string; // Optional campus identifier; do not store other sensitive records
   department?: string; // Required for "operator" role
   position?: string; // Required for "operator" role
 

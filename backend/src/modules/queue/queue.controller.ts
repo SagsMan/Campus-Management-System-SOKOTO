@@ -8,6 +8,37 @@ import { broadcastQueueUpdate } from "../../server/socket.js";
 
 import { getQueuePredictedWait } from "./services/predictedWait.service.js";
 
+export const CAMPUS_OFFICES = [
+  {
+    name: "Registry",
+    description: "Admissions, records, transcripts, and verification",
+  },
+  {
+    name: "Bursary",
+    description: "Fees, receipts, and approved student finance enquiries",
+  },
+  {
+    name: "Faculty Office",
+    description: "Faculty-level academic and administrative services",
+  },
+  {
+    name: "Departmental Office",
+    description: "Department registrations, approvals, and support",
+  },
+  {
+    name: "Student Affairs",
+    description: "Welfare, guidance, accommodation, and student support",
+  },
+] as const;
+
+export function getCampusOffices(_req: AuthRequest, res: Response) {
+  return res.status(200).json({
+    success: true,
+    offices: CAMPUS_OFFICES,
+    note: "Use staff-assisted registration when a student or visitor has limited data access.",
+  });
+}
+
 // 1: Create a new queue
 // 6: Get predicted wait time for a queue (ML-powered)
 export async function getPredictedWaitTime(req: AuthRequest, res: Response) {

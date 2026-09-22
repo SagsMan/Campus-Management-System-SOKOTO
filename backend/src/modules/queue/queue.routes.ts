@@ -10,6 +10,7 @@ import {
   extendTokenTime,
   markTokenNoShow,
   recallToken,
+  getCampusOffices,
 } from "./queue.controller.js";
 import { verifyJWT, authorize } from "../../middlewares/auth.js";
 
@@ -19,6 +20,7 @@ router.get("/:queueId/predicted-wait", getPredictedWaitTime);
 
 // Public endpoint to get all queues for users
 router.get("/", getQueuesForUsers);
+router.get("/campus-offices", getCampusOffices);
 
 // queues
 // Only operators and admins can create queues

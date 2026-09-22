@@ -4,8 +4,9 @@ import { Toaster } from "sonner";
 import GlobalHooks from "./components/GlobalHooks";
 
 export const metadata = {
-  title: "uniq",
-  description: "uniq queue operations platform",
+  title: "Digital Queue System Sokoto",
+  description:
+    "A low-bandwidth digital queue system for student and visitor services at Sokoto campuses.",
 };
 
 export default function RootLayout({

@@ -186,7 +186,7 @@ export const sendEmailVerificationOtp = async (
 
     const result = await sendEmail({
       to: email,
-      subject: "Verify your email - CampusOR",
+      subject: "Verify your email - Digital Queue System Sokoto",
       html,
       text,
     });
@@ -209,7 +209,7 @@ export const sendAdminInviteEmail = async (
 
     const result = await sendEmail({
       to: email,
-      subject: "You're invited to CampusOR Admin",
+      subject: "You're invited to Digital Queue System Sokoto Admin",
       html,
     });
 

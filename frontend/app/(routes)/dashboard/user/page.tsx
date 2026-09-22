@@ -89,7 +89,7 @@ export default function UserDashboardPage() {
     return (
       <div className="space-y-6">
         <div className="brand-page-header">
-          <p className="brand-badge mb-4 bg-white/12 text-white border-white/20">uniq workspace</p>
+           <p className="brand-badge mb-4 bg-white/12 text-white border-white/20">DQS Sokoto workspace</p>
           <h1 className="mb-2 text-3xl font-bold text-white">Dashboard</h1>
           <p className="text-white/80">Welcome back! Here&apos;s your queue status.</p>
         </div>
@@ -107,7 +107,7 @@ export default function UserDashboardPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="brand-page-header">
-        <p className="brand-badge mb-4 bg-white/12 text-white border-white/20">uniq workspace</p>
+         <p className="brand-badge mb-4 bg-white/12 text-white border-white/20">DQS Sokoto workspace</p>
         <h1 className="mb-2 text-3xl font-bold text-white">Dashboard</h1>
         <p className="text-white/80">Welcome back! Here&apos;s your queue status.</p>
       </div>

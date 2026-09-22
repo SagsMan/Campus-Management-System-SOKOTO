@@ -1,6 +1,4 @@
-import { Queue } from "../queue.model.js";
 import { Token, TokenStatus } from "../token.model.js";
-import { getPredictedWaitTime } from "./mlWaitTime.service.js";
 
 export async function computeQueueFeatures(queueId: string) {
   // Get tokens ahead (waiting)
@@ -45,6 +43,11 @@ export async function computeQueueFeatures(queueId: string) {
 
 export async function getQueuePredictedWait(queueId: string) {
   const features = await computeQueueFeatures(queueId);
-  const predictedWaitMinutes = await getPredictedWaitTime(features);
-  return predictedWaitMinutes;
+  // Keep this calculation local so the queue service works on a low-bandwidth
+  // campus connection without a separate ML service or external request.
+  const serviceMinutes = Math.max(1, Math.round(features.avgServiceTime));
+  return Math.max(
+    0,
+    Math.round((features.tokensAhead / Math.max(features.activeCounters, 1)) * serviceMinutes),
+  );
 }

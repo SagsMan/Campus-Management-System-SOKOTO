@@ -72,7 +72,7 @@ const getEnvConfig = (): EnvConfig => {
     SMTP_SECURE: SMTP_SECURE === "true",
     SMTP_USER: SMTP_USER || "",
     SMTP_PASS: SMTP_PASS || "",
-    FROM_EMAIL: FROM_EMAIL || "noreply@campusor.com",
+    FROM_EMAIL: FROM_EMAIL || "noreply@dqs-sokoto.local",
     // Rate limiting defaults
     QUEUE_JOIN_COOLDOWN_SECONDS: QUEUE_JOIN_COOLDOWN_SECONDS
       ? parseInt(QUEUE_JOIN_COOLDOWN_SECONDS, 10)

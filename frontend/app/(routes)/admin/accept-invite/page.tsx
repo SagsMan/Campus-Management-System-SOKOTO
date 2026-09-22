@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "../../../context/AuthContext";
@@ -8,7 +8,7 @@ import Footer from "../../../../components/footer/Footer";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
-export default function AcceptInvitePage() {
+function AcceptInviteForm() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -63,8 +63,8 @@ export default function AcceptInvitePage() {
 
       // Redirect to admin dashboard
       router.replace("/admin");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to accept invite");
     } finally {
       setIsLoading(false);
     }
@@ -91,7 +91,7 @@ export default function AcceptInvitePage() {
             <Link href="/" className="flex items-center gap-3 group">
               <img
                 src="/logo/LOGO.svg"
-                alt="uniq logo"
+                alt="Digital Queue System Sokoto logo"
                 className="h-11 w-auto object-contain md:h-14"
               />
             </Link>
@@ -171,5 +171,19 @@ export default function AcceptInvitePage() {
 
       <Footer />
     </main>
+  );
+}
+
+export default function AcceptInvitePage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-600">
+          Loading invitation…
+        </main>
+      }
+    >
+      <AcceptInviteForm />
+    </Suspense>
   );
 }

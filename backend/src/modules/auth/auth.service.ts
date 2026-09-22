@@ -27,6 +27,7 @@ export interface RegisterDetails {
   role?: UserRole;
   // Role-specific fields
   collegeEmail?: string; // Required for "user" role
+  studentId?: string; // Optional campus identifier
   department?: string; // Required for "operator" role
   position?: string; // Required for "operator" role
 }
@@ -38,6 +39,7 @@ export interface SafeUser {
   role: UserRole;
   emailVerified: boolean;
   collegeEmail?: string;
+  studentId?: string;
   department?: string;
   position?: string;
   createdAt: Date;
@@ -65,6 +67,7 @@ const buildSafeUser = (user: IUser): SafeUser => {
     role: user.role,
     emailVerified: !!user.emailVerified,
     collegeEmail: user.collegeEmail,
+    studentId: user.studentId,
     department: user.department,
     position: user.position,
     createdAt: user.createdAt,
@@ -107,7 +110,7 @@ const applyEmailOtp = async (user: IUser): Promise<{ otp: string }> => {
 export const registerUser = async (
   input: RegisterDetails
 ): Promise<SafeUser> => {
-  const { name, email, password, role, collegeEmail, department, position } = input;
+  const { name, email, password, role, collegeEmail, studentId, department, position } = input;
   
   const finalRole = role || "user";
 
@@ -144,6 +147,7 @@ export const registerUser = async (
     role: UserRole;
     emailVerified: boolean;
     collegeEmail?: string;
+    studentId?: string;
     department?: string;
     position?: string;
   } = {
@@ -156,6 +160,7 @@ export const registerUser = async (
 
   if (finalRole === "user" && collegeEmail) {
     userData.collegeEmail = collegeEmail;
+    if (studentId?.trim()) userData.studentId = studentId.trim();
   } else if (finalRole === "operator") {
     if (department) userData.department = department;
     if (position) userData.position = position;

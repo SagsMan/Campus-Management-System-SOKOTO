@@ -15,8 +15,8 @@ const Footer = () => {
       <div className="w-full px-4 py-10">
         <div className="mb-8 flex justify-center">
           <div className="brand-wordmark text-white">
-            <span className="brand-wordmark-mark">u</span>
-            <span className="brand-wordmark-name text-white">uniq</span>
+            <span className="brand-wordmark-mark">D</span>
+            <span className="brand-wordmark-name text-white">DQS Sokoto</span>
           </div>
         </div>
 
@@ -71,7 +71,7 @@ const Footer = () => {
         <div className="mx-auto mb-4 max-w-5xl border-t border-white/10" />
 
         <div className="text-md text-center tracking-wide text-white/60">
-          © {new Date().getFullYear()} uniq. All rights reserved.
+          © {new Date().getFullYear()} Digital Queue System Sokoto. All rights reserved.
         </div>
       </div>
     </footer>

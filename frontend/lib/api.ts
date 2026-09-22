@@ -21,7 +21,9 @@ class ApiService {
   private getAuthHeaders(): HeadersInit {
     if (typeof window === "undefined") return {};
 
-    const token = localStorage.getItem("campusor_jwt");
+    const token =
+      localStorage.getItem("dqs_sokoto_jwt") ||
+      localStorage.getItem("campusor_jwt");
     const headers: HeadersInit = {
       "Content-Type": "application/json",
     };
@@ -33,7 +35,7 @@ class ApiService {
     return headers;
   }
 
-  async post(endpoint: string, data: any, includeAuth: boolean = false) {
+  async post(endpoint: string, data: unknown, includeAuth: boolean = false) {
     const response = await fetch(this.buildUrl(endpoint), {
       method: "POST",
       headers: includeAuth
@@ -43,7 +45,9 @@ class ApiService {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
+      const errorData = (await response.json().catch(() => ({}))) as {
+        message?: string;
+      };
       throw new Error(
         errorData.message || `HTTP error! status: ${response.status}`,
       );
@@ -70,7 +74,7 @@ class ApiService {
     return response.json();
   }
 
-  async put(endpoint: string, data: any, includeAuth: boolean = true) {
+  async put(endpoint: string, data: unknown, includeAuth: boolean = true) {
     const response = await fetch(this.buildUrl(endpoint), {
       method: "PUT",
       headers: includeAuth
@@ -80,7 +84,9 @@ class ApiService {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
+      const errorData = (await response.json().catch(() => ({}))) as {
+        message?: string;
+      };
       throw new Error(
         errorData.message || `HTTP error! status: ${response.status}`,
       );
@@ -89,7 +95,7 @@ class ApiService {
     return response.json();
   }
 
-  async patch(endpoint: string, data: any, includeAuth: boolean = true) {
+  async patch(endpoint: string, data: unknown, includeAuth: boolean = true) {
     const response = await fetch(this.buildUrl(endpoint), {
       method: "PATCH",
       headers: includeAuth
@@ -99,7 +105,9 @@ class ApiService {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
+      const errorData = (await response.json().catch(() => ({}))) as {
+        message?: string;
+      };
       throw new Error(
         errorData.message || `HTTP error! status: ${response.status}`,
       );

@@ -9,7 +9,9 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 const getAuthHeaders = (): HeadersInit => {
   if (typeof window === "undefined") return {};
 
-  const token = localStorage.getItem("campusor_jwt");
+  const token =
+    localStorage.getItem("dqs_sokoto_jwt") ||
+    localStorage.getItem("campusor_jwt");
   const headers: HeadersInit = {
     "Content-Type": "application/json",
   };
@@ -46,6 +48,7 @@ export interface AvgWaitTime {
 }
 
 export interface TokenStatusCount {
+  [key: string]: string | number;
   status: string;
   count: number;
 }

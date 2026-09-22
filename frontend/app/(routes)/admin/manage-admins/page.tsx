@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AdminSidebar from "@/components/sidebar/AdminSidebar";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import { error } from "console";
 import { useAuth } from "@/app/context/AuthContext";
 
 type AdminUser = {
@@ -11,6 +10,14 @@ type AdminUser = {
   email: string;
   emailVerified: boolean;
   createdBy: string | null;
+  createdAt: string;
+};
+
+type AdminApiRecord = {
+  _id: string;
+  email: string;
+  emailVerified: boolean;
+  createdByAdmin?: string | null;
   createdAt: string;
 };
 
@@ -22,7 +29,7 @@ export default function ManageAdminsPage() {
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
 
-  const fetchAdmins = async () => {
+  const fetchAdmins = useCallback(async () => {
     const response = await fetch(`${API_URL}/api/admin/admins`, {
       method: "GET",
       headers: {
@@ -39,7 +46,7 @@ export default function ManageAdminsPage() {
       throw new Error(data.message || "fetching admin failed");
     }
 
-    const normalizedAdmins: AdminUser[] = data.map((admin: any) => ({
+    const normalizedAdmins: AdminUser[] = (data as AdminApiRecord[]).map((admin) => ({
       id: admin._id,
       email: admin.email,
       emailVerified: admin.emailVerified,
@@ -48,22 +55,13 @@ export default function ManageAdminsPage() {
     }));
   
     setAdmins(normalizedAdmins);  
-  }
-
-  useEffect(() => {
-    try {
-      console.log("Sucessfully fetched admins");
-    }
-    catch (err) {
-      console.error("Error fetching admins:", err);
-    }
   }, [token]);
 
   useEffect(() => {
     if (token) {
       fetchAdmins();
     }
-  }, [token]);
+  }, [fetchAdmins, token]);
 
   const handleCreateAdmin = async () => {
     if (!email) return;
@@ -87,9 +85,9 @@ export default function ManageAdminsPage() {
 
       alert("Admin invitation sent successfully!");
       setEmail("");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Invite error:", err);
-      alert(err.message || "Failed to send invitation");
+      alert(err instanceof Error ? err.message : "Failed to send invitation");
     } finally {
       setLoading(false);
     }

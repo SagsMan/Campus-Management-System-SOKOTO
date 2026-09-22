@@ -1,123 +1,74 @@
-# CampusOR  
-**Campus Online Queue & Reservation System**
+# Digital Queue System Sokoto
 
-CampusOR is a smart, scalable virtual queue and reservation system for large campuses such as universities, hospitals, hostels, cafeterias, and administrative offices. It replaces physical queues with a real-time digital experience, reducing congestion and improving service efficiency.
+Digital Queue System Sokoto is a focused virtual queue service for student and
+visitor-facing offices on Sokoto campuses. It replaces crowded physical lines
+with simple, low-bandwidth queue access and live status updates.
 
----
+## Product scope
 
-## Table of Contents
+The system keeps the modules needed to run campus service queues:
 
-- [Overview](#overview)
-- [Problem Statement](#problem-statement)
-- [Objectives](#objectives)
-- [Key Features](#key-features)
-- [System Architecture](#system-architecture)
-- [Technology Stack](#technology-stack)
-- [Folder Structure](#folder-structure)
-- [Novelty and Uniqueness](#novelty-and-uniqueness)
-- [Expected Outcomes](#expected-outcomes)
-- [Future Enhancements](#future-enhancements)
-- [Conclusion](#conclusion)
+- Students and visitors can browse queues, join a queue, see their token and
+  position, and receive status notifications.
+- Operators can create and manage queues, call or skip tokens, pause service,
+  change capacity, and open a public kiosk display.
+- Administrators can manage operators and review queue performance reports.
+- Public displays show only queue tokens and service status; they do not expose
+  student names or contact details.
 
----
+The initial campus office set is:
 
-## Overview
+1. Registry
+2. Bursary
+3. Faculty Office
+4. Departmental Office
+5. Student Affairs
 
-Managing queues in large campuses often leads to long wait times, overcrowding, and inefficiencies. CampusOR introduces a virtual queue ecosystem where users can join queues digitally, track their position in real time, and receive timely notifications—without standing in physical lines.
+Operators may add another student service when a campus needs it.
 
-The system combines real-time communication, predictive analytics, and role-based dashboards to deliver a seamless queue management experience.
+## Nigerian campus requirements
 
----
+- **Assisted registration:** service staff can help a student or visitor create
+  an account or use a queue when the person has limited data access.
+- **Low-bandwidth access:** queue listings are available without login, live
+  updates use a small WebSocket payload, and wait-time estimates are computed
+  locally without a separate ML service or external request.
+- **Simple authentication:** the application uses email/password login with
+  JWT sessions and email verification. It does not require a commercial
+  identity provider.
+- **Privacy-conscious records:** the account stores only the name, contact
+  email, optional campus email/student ID, role, and queue history needed for
+  service. Do not store medical, financial, address, or unrelated personal
+  information in queue records.
 
-## Problem Statement
+## Technology
 
-Traditional campus queue systems face:
+- Frontend: Next.js, React, Tailwind CSS
+- API: Node.js, Express, TypeScript
+- Data: MongoDB
+- Live updates: Socket.IO
+- Queue state: Redis
+- Authentication: bcrypt password hashing and JWT
 
-- Long physical queues and overcrowding  
-- No real-time queue visibility  
-- Manual token handling and errors  
-- Inefficient multi-counter coordination  
-- No waiting-time prediction  
-- Fragmented systems across campus  
+## Repository layout
 
----
+```text
+frontend/  Next.js web application
+backend/   Express API, authentication, queue and reporting modules
+shared/    Shared queue and user types
+docs/      API and architecture notes
+infra/     Local infrastructure configuration
+```
 
-## Objectives
+## Local development
 
-CampusOR aims to:
+1. Configure the backend values in `backend/.env` from
+   `backend/.env.example`.
+2. Configure `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_SOCKET_URL` in
+   `frontend/.env.local`.
+3. Install dependencies in `frontend` and `backend`.
+4. Start the API and frontend development servers.
 
-- Digitize queue and token management  
-- Reduce physical waiting and crowding  
-- Enable real-time tracking and alerts  
-- Support multi-counter operations  
-- Predict waiting times using data  
-- Provide a unified campus-wide solution  
-
----
-
-## Key Features
-
-### Users
-- Join queues digitally via web or PWA  
-- Real-time queue position tracking  
-- Smart notifications (“You’re Next”)  
-- QR-based token verification  
-- Time-slot booking and rescheduling  
-- Offline PWA support with auto-sync  
-
-### Operators
-- Accept, skip, or recall tokens  
-- Pause and resume queues  
-- Multi-counter coordination  
-- Kiosk mode for public displays  
-
-### Admin
-- Queue and counter management  
-- Load balancing across counters  
-- Analytics: peak hours, wait time, efficiency  
-- Role-based access control  
-
-### Machine Learning
-- Predicts waiting time using:
-  - Historical service data  
-  - Queue length  
-  - Counter availability  
-  - Time-based patterns  
-
----
-
-## System Architecture
-
-- Clients communicate via REST APIs and WebSockets  
-- Backend manages queues, tokens, and users  
-- Real-time server syncs live updates  
-- ML service predicts wait times  
-- Databases store queue and analytics data  
-- Notification services push real-time alerts  
-
----
-
-## Technology Stack
-
-- **Frontend:**  Next.js 
-- **Backend:** Node.js, Express  
-- **Database:** MongoDB   
-- **Real-Time:** WebSockets, Socket.IO  
-- **ML:** Python (FastAPI)  
-- **Notifications:** WhatsApp, Telegram, Email (which ever is easier to integrate) 
-- **Deployment:** Docker, Vercel, AWS  
-- **Security:** JWT, RBAC  
-
----
-
-## Folder Structure
-
-```txt
-campusor/
-├── frontend/        # Next.js 
-├── backend/         # Express + MongoDB API
-├── ml-service/      # FastAPI ML service
-├── shared/          # shared types & schemas
-├── infra/           # Docker & deployment
-└── docs/            # architecture & API docs
-
+For API details, see `docs/api.md`. The public queue listing is available from
+`GET /api/queues`; the office preset list is available from
+`GET /api/queues/campus-offices`.

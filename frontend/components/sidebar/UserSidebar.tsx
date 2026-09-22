@@ -62,8 +62,8 @@ export default function UserSidebar() {
         <div className="flex h-full flex-col">
           <div className="border-b border-white/12 p-6">
             <div className="brand-wordmark text-white">
-              <span className="brand-wordmark-mark">u</span>
-              <span className="brand-wordmark-name text-white">uniq</span>
+              <span className="brand-wordmark-mark">D</span>
+              <span className="brand-wordmark-name text-white">DQS Sokoto</span>
             </div>
             <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-white/60">
               User Workspace

@@ -5,11 +5,11 @@ import { useAuth } from "../../context/AuthContext";
 import { apiService } from "../../services/api";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 const OTP_INPUT_LENGTH = 6;
 
-export default function VerifyEmailPage() {
+function VerifyEmailForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { login } = useAuth();
@@ -105,8 +105,8 @@ export default function VerifyEmailPage() {
         <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between">
             <Link href="/" className="brand-wordmark">
-              <span className="brand-wordmark-mark">u</span>
-              <span className="brand-wordmark-name">uniq</span>
+              <span className="brand-wordmark-mark">D</span>
+              <span className="brand-wordmark-name">DQS Sokoto</span>
             </Link>
             <div className="hidden items-center gap-3 text-sm font-medium md:flex">
               <Link href="/login" className="text-slate-500 transition-all duration-300 hover:text-slate-900">
@@ -138,7 +138,7 @@ export default function VerifyEmailPage() {
           </div>
 
           <p className="mb-4 text-sm text-slate-600">
-            Enter the 6-digit code we emailed you to activate your uniq account.
+              Enter the 6-digit code we emailed you to activate your Digital Queue System Sokoto account.
           </p>
 
           {error && (
@@ -200,5 +200,19 @@ export default function VerifyEmailPage() {
 
       <Footer />
     </main>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="brand-shell flex min-h-screen items-center justify-center text-slate-600">
+          Loading verification…
+        </main>
+      }
+    >
+      <VerifyEmailForm />
+    </Suspense>
   );
 }

@@ -8,6 +8,16 @@ import Footer from "../../../components/footer/Footer";
 import { apiService } from "../../services/api";
 
 type UserRole = "user" | "operator";
+type RegisterRequest = {
+  name: string;
+  email: string;
+  password: string;
+  role: UserRole;
+  collegeEmail?: string;
+  studentId?: string;
+  department?: string;
+  position?: string;
+};
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -15,6 +25,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<UserRole>("user");
   const [collegeEmail, setCollegeEmail] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [department, setDepartment] = useState("");
   const [position, setPosition] = useState("");
   const [error, setError] = useState("");
@@ -27,17 +38,21 @@ export default function SignupPage() {
     setIsLoading(true);
 
     try {
-      const requestBody: any = { name, email, password, role };
-      if (role === "user") requestBody.collegeEmail = collegeEmail;
-      else {
+      const requestBody: RegisterRequest = { name, email, password, role };
+      if (role === "user") {
+        requestBody.collegeEmail = collegeEmail;
+        if (studentId.trim()) requestBody.studentId = studentId.trim();
+      } else {
         requestBody.department = department;
         requestBody.position = position;
       }
 
       await apiService.post("/auth/register", requestBody, false);
       router.push(`/verify-email?email=${encodeURIComponent(email)}`);
-    } catch (err: any) {
-      setError(err.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +64,7 @@ export default function SignupPage() {
       <nav className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-tight text-indigo-600">
-            Campus<span className="text-slate-900">OR</span>
+             Digital Queue System Sokoto
           </Link>
           <div className="flex items-center gap-8">
             <div className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
@@ -74,7 +89,7 @@ export default function SignupPage() {
               Create your account
             </h1>
             <p className="mt-3 text-slate-500">
-              Join the next generation of campus operations.
+               Join the queue service for students and visitors across Sokoto campuses.
             </p>
           </div>
 
@@ -92,10 +107,10 @@ export default function SignupPage() {
               </motion.div>
             )}
 
-            <div className="space-y-4">
+             <div className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Full Name</label>
-                <input
+                     <input
                   type="text"
                   placeholder="John Doe"
                   className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
@@ -148,11 +163,21 @@ export default function SignupPage() {
                     <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">College Email</label>
                     <input
                       type="email"
-                      placeholder="rollno@iiita.ac.in"
+                       placeholder="student@campus.edu.ng"
                       className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
                       value={collegeEmail}
                       onChange={(e) => setCollegeEmail(e.target.value)}
                       required
+                    />
+                    <label className="mt-4 block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">
+                      Student ID <span className="font-normal normal-case">(optional)</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Only if needed for this service"
+                      className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                      value={studentId}
+                      onChange={(e) => setStudentId(e.target.value)}
                     />
                   </motion.div>
                 ) : (
@@ -173,7 +198,8 @@ export default function SignupPage() {
                         onChange={(e) => setDepartment(e.target.value)}
                         required
                       />
-                    </div>
+             </div>
+
                     <div>
                       <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Position</label>
                       <input
@@ -188,6 +214,12 @@ export default function SignupPage() {
                   </motion.div>
                 )}
               </AnimatePresence>
+
+               <p className="rounded-xl border border-sky-100 bg-sky-50 px-3 py-2 text-xs leading-5 text-sky-800">
+                 Privacy note: only the information needed for queue access is
+                 stored. Do not enter medical, financial, or other sensitive
+                 details. Staff can assist with registration at the service desk.
+               </p>
 
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Password</label>

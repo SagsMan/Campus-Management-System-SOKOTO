@@ -9,11 +9,11 @@ import { queueService } from "../../lib/api/queue";
 type SortOption = "waitTime" | "queueLength" | "alphabetical";
 type LocationFilter =
   | "all"
-  | "Admin Block"
-  | "Cafeteria"
-  | "Clinic"
-  | "Hostel"
-  | "Sports Complex";
+  | "Registry"
+  | "Bursary"
+  | "Faculty Office"
+  | "Departmental Office"
+  | "Student Affairs";
 type StatusFilter = "all" | "open" | "paused" | "full";
 
 export default function QueueList() {
@@ -84,7 +84,7 @@ export default function QueueList() {
         <div className="brand-panel mb-8 rounded-[28px] p-6 sm:p-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             <div>
-              <span className="brand-badge mb-4">uniq queue explorer</span>
+              <span className="brand-badge mb-4">Sokoto campus queue explorer</span>
               <h1 className="mb-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
                 Browse live queues with confidence
               </h1>
@@ -186,7 +186,7 @@ export default function QueueList() {
           </div>
         ) : (
           <div className="text-center py-12 text-slate-600">
-            <p>No queues found matching your filters.</p>
+            <p>No campus queues found matching your filters.</p>
           </div>
         )}
       </div>

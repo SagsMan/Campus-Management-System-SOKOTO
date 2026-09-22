@@ -71,8 +71,8 @@ export default function OperatorSidebar() {
     <aside className="brand-sidebar fixed left-0 top-0 z-50 flex h-screen w-48 flex-col sm:w-72">
       <div className="border-b border-white/12 p-4 sm:p-6">
         <div className="brand-wordmark text-white">
-          <span className="brand-wordmark-mark">u</span>
-          <span className="brand-wordmark-name text-white">uniq</span>
+          <span className="brand-wordmark-mark">D</span>
+          <span className="brand-wordmark-name text-white">DQS Sokoto</span>
         </div>
         <p className="mt-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/60">
           Operator Console

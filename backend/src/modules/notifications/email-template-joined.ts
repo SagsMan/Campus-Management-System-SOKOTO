@@ -30,7 +30,7 @@ export const getQueueJoinedEmailHtml = ({
           <!-- Header -->
           <tr>
             <td style="padding: 40px 40px 30px; text-align: center; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 12px 12px 0 0;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">CampusOR</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Digital Queue System Sokoto</h1>
               <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.9); font-size: 14px;">Queue Management System</p>
             </td>
           </tr>
@@ -108,10 +108,10 @@ export const getQueueJoinedEmailHtml = ({
           <tr>
             <td style="padding: 30px 40px; background-color: #f8f9fa; border-radius: 0 0 12px 12px; text-align: center;">
               <p style="margin: 0 0 10px; color: #718096; font-size: 14px;">
-                Thank you for using CampusOR!
+                Thank you for using Digital Queue System Sokoto!
               </p>
               <p style="margin: 0; color: #a0aec0; font-size: 12px;">
-                © ${new Date().getFullYear()} CampusOR. All rights reserved.
+                © ${new Date().getFullYear()} Digital Queue System Sokoto. All rights reserved.
               </p>
             </td>
           </tr>
@@ -130,7 +130,7 @@ export const getQueueJoinedEmailText = ({
   location,
 }: QueueJoinedEmailProps): string => {
   return `
-Welcome to the Queue! - CampusOR
+Welcome to the Queue! - Digital Queue System Sokoto
 
 Hello ${userName},
 
@@ -143,8 +143,8 @@ QUEUE NAME: ${queueName}
 ${location ? `Location: ${location}\n` : ''}
 ℹ️ INFO: You will receive notifications about your queue status. Please keep an eye on your email for updates.
 
-Thank you for using CampusOR!
+Thank you for using Digital Queue System Sokoto!
 
-© ${new Date().getFullYear()} CampusOR. All rights reserved.
+© ${new Date().getFullYear()} Digital Queue System Sokoto. All rights reserved.
   `;
 };
