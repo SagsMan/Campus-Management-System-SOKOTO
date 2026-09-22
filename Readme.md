@@ -41,6 +41,17 @@ Operators may add another student service when a campus needs it.
   service. Do not store medical, financial, address, or unrelated personal
   information in queue records.
 
+## Main user flows
+
+1. A student or visitor opens the public queue list and chooses the campus
+   office they need.
+2. They sign in or register, verify their email, and join an available queue.
+3. The service shows their token, queue position, and current estimated wait.
+4. An operator calls, skips, recalls, or marks tokens as no-shows from the
+   operator console.
+5. A kiosk or public display shows the active token without revealing student
+   identity.
+
 ## Technology
 
 - Frontend: Next.js, React, Tailwind CSS
@@ -62,12 +73,47 @@ infra/     Local infrastructure configuration
 
 ## Local development
 
-1. Configure the backend values in `backend/.env` from
-   `backend/.env.example`.
-2. Configure `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_SOCKET_URL` in
-   `frontend/.env.local`.
-3. Install dependencies in `frontend` and `backend`.
-4. Start the API and frontend development servers.
+### Prerequisites
+
+- Node.js 20 or later
+- MongoDB
+- Redis
+
+### Setup
+
+```bash
+cd backend
+cp .env.example .env
+npm ci
+
+cd ../frontend
+npm ci
+```
+
+Set the backend values in `backend/.env`, including the MongoDB, Redis,
+JWT, and email settings. Set `NEXT_PUBLIC_API_URL` and
+`NEXT_PUBLIC_SOCKET_URL` in `frontend/.env.local`.
+
+### Run
+
+Start the API and frontend in separate terminals:
+
+```bash
+cd backend
+npm run dev
+```
+
+```bash
+cd frontend
+npm run dev
+```
+
+For production checks:
+
+```bash
+cd backend && npm run build
+cd ../frontend && npm run lint && npm run build
+```
 
 For API details, see `docs/api.md`. The public queue listing is available from
 `GET /api/queues`; the office preset list is available from
