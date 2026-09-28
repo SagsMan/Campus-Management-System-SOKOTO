@@ -7,6 +7,11 @@ export const metadata = {
   title: "Digital Queue System Sokoto",
   description:
     "A low-bandwidth digital queue system for student and visitor services at Sokoto campuses.",
+  icons: {
+    icon: "/logo/udus-logo.jpg",
+    shortcut: "/logo/udus-logo.jpg",
+    apple: "/logo/udus-logo.jpg",
+  },
 };
 
 export default function RootLayout({

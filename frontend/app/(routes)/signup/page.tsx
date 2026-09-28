@@ -63,9 +63,14 @@ export default function SignupPage() {
       {/* Modern Navbar */}
       <nav className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight text-indigo-600">
-             Digital Queue System Sokoto
-          </Link>
+          <Link href="/" className="flex items-center gap-3 text-xl font-bold tracking-tight text-indigo-600">
+             <img
+               src="/logo/udus-logo.jpg"
+               alt="Usmanu Danfodiyo University Sokoto logo"
+               className="h-10 w-10 rounded-xl object-cover"
+             />
+             <span>Digital Queue System Sokoto</span>
+           </Link>
           <div className="flex items-center gap-8">
             <div className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
               <a href="#solution" className="hover:text-indigo-600 transition-colors">Solution</a>
