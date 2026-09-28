@@ -109,8 +109,8 @@ body {
 }
 
 .brand-wordmark-mark {
-  @apply inline-flex h-10 w-10 items-center justify-center rounded-2xl text-sm font-bold text-white;
-  background-image: linear-gradient(135deg, var(--color-brand-deep), var(--color-brand-soft));
+  @apply inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl text-transparent;
+  background: #ffffff url("/logo/udus-logo.jpg") center / cover no-repeat;
   box-shadow: 0 12px 24px rgba(8, 80, 120, 0.22);
 }
 

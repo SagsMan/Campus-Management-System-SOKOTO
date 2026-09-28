@@ -90,8 +90,8 @@ function AcceptInviteForm() {
           <div className="flex items-center justify-between relative z-30">
             <Link href="/" className="flex items-center gap-3 group">
               <img
-                src="/logo/LOGO.svg"
-                alt="Digital Queue System Sokoto logo"
+                src="/logo/udus-logo.jpg"
+                alt="Usmanu Danfodiyo University Sokoto logo"
                 className="h-11 w-auto object-contain md:h-14"
               />
             </Link>
